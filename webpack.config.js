@@ -15,7 +15,7 @@ const config = {
   output: {
     filename: '[name]-[chunkhash:6].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/'
+    publicPath,
   },
   module: {
     rules: [
@@ -35,6 +35,11 @@ const config = {
       filename: 'vendor-[chunkhash:8].js',
       minChunks: Infinity,
     }),
+    new HtmlWebpackPlugin({
+      chunks: [],
+      template: path.resolve(__dirname, 'src/index.html'),
+      filename: path.join(__dirname, 'dist', 'index.html'),
+    })
   ],
   devServer: {
     host: '0.0.0.0',
@@ -47,6 +52,7 @@ const config = {
   },
 };
 
+console.log(`http://0.0.0.0:9000/dist/index.html`);
 Object.keys(config.entry).filter(e => e !== 'vendor').forEach((e) => {
   config.plugins.push(new HtmlWebpackPlugin({
     chunks: ['vendor', e],
