@@ -1,0 +1,30 @@
+{
+  "name": "d3-practice",
+  "version": "1.0.0",
+  "description": "d3练习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development ./node_modules/.bin/webpack-dev-server",
+    "build": "NODE_ENV=production ./node_modules/.bin/webpack -p"
+  },
+  "repository": {
+    "url": "https://github.com/caoyongzheng/d3-practice.git",
+    "type": "git"
+  },
+  "author": "caoyongzheng <15267056106@139.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "html-webpack-plugin": "^2.29.0",
+    "webpack": "^3.2.0",
+    "webpack-dev-server": "^2.5.1"
+  },
+  "dependencies": {
+    "d3": "^4.10.0"
+  }
+}
