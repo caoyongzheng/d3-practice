@@ -1,12 +1,34 @@
-const d3 = require('d3')
+const d3 = require('d3');
+const d3Tip = require('d3-tip')
 
-document.title = '柱状图'
+document.title = '柱状图带提示框'
 
 const sheet = document.createElement('style')
 sheet.innerHTML = `
   svg {margin: 100px auto; display: block;}
   .bar {fill: steelblue;}
   .bar:hover {fill: brown;}
+  .d3-tip {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 4px 16px;
+    border-radius: 2px;
+    pointer-events: none;
+    color: #FFFFFF;
+  }
+  .d3-tip:after {
+    box-sizing: border-box;
+    display: block;
+    font-size: 10px;
+    line-height: 10px;
+    color: rgba(0, 0, 0, 0.7);
+    content: '\\25BC';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+  }
 `
 document.body.appendChild(sheet)
 
@@ -48,9 +70,17 @@ g.append('g')
 g.append('g').attr('transform', `translate(0, 0)`)
 .call(d3.axisLeft(y));
 
+// tootip
+/* Initialize tooltip */
+tip = d3Tip().attr('class', 'd3-tip').offset([-10, 0]).html(d => d.value);
+/* Invoke the tip in the context of your visualization */
+g.call(tip)
+
 g.append('g').selectAll('.bar').data(data).enter().append('rect')
 .attr('class', 'bar')
 .attr('x', d => x(d.key))
 .attr('width', x.bandwidth())
 .attr('y', d => y(d.value))
-.attr('height', d => height - y(d.value));
+.attr('height', d => height - y(d.value))
+.on('mouseover', tip.show)
+.on('mouseout', tip.hide)

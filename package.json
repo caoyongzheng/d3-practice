@@ -25,6 +25,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "d3": "^4.10.0"
+    "d3": "^4.10.0",
+    "d3-tip": "^0.7.1"
   }
 }

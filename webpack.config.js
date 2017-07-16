@@ -11,6 +11,7 @@ const config = {
   entry: {
     vendor: ['d3', 'd3-axis', 'd3-scale'],
     bar: './src/bar.js',
+    barWithTootip: './src/bar-width-tootip.js',
   },
   output: {
     filename: '[name]-[chunkhash:6].js',
